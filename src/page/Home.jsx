@@ -37,8 +37,8 @@ export default function Home() {
     location: "الرياض، المملكة العربية السعودية",
     email: "ahmed@example.com",
     social: {
-      github: "https://github.com/username",
-      linkedin: "https://linkedin.com/in/username",
+      github: "https://github.com/3ntazDev",
+      linkedin: "www.linkedin.com/in/fahad-alghamdi-a91969246",
     },
   }
 
@@ -74,7 +74,7 @@ export default function Home() {
         "منصة تربط الأفراد والشركات مع أصحاب الطابعات ثلاثية الأبعاد، وتوفر مزايا مثل نظام المزايدة، الدعم الذكي بالذكاء الاصطناعي، المعاملات الآمنة، وعرض الخدمات.",
       technologies: ["AWS", "React", "Tailwind CSS", "n8n", "Supabase"],
       github: "https://github.com/yourusername/fabmatch", // استبدل بالرابط الفعلي
-      demo: "https://fabmatch-demo.com", // استبدل بالرابط الفعلي
+      demo: "https://fabmatch.org", // استبدل بالرابط الفعلي
     },
     {
       title: "WashyWay",
@@ -82,23 +82,21 @@ export default function Home() {
         "تطبيق ويب لحجز غسيل السيارات في أماكن متعددة بسهولة. يمكن للمستخدمين تصفح الخدمات القريبة وتحديد مواعيد الغسيل إلكترونيًا.",
       technologies: ["React", "Tailwind CSS", "Supabase"],
       github: "https://github.com/yourusername/washyway", // استبدل بالرابط الفعلي
-      demo: "https://washyway-demo.com", // استبدل بالرابط الفعلي
+      demo: "washy-way.vercel.app", // استبدل بالرابط الفعلي
     },
     {
       title: "تطبيق  ",
       description:
         "تطبيق يساعد المستخدمين في البحث عن أغراضهم المفقودة بطريقة سهلة وبواجهة استخدام واضحة. تم تصميمه باستخدام Figma ليوفر تجربة مستخدم سلسة.",
       technologies: ["Figma"], // أضف تقنيات أخرى إذا تم برمجته
-      github: "https://github.com/yourusername/lostandfound", // استبدل بالرابط الفعلي
-      demo: "https://lostandfound-demo.com", // استبدل بالرابط الفعلي
+       // استبدل بالرابط الفعلي
     },
     {
       title: "نظام Edamah",
       description:
         "نظام يربط الجمعيات الخيرية بالمطاعم لإعادة توزيع الفائض من الطعام بشكل فعّال، ويهدف إلى تقليل الهدر وتعزيز الاستدامة.",
       technologies: ["Figma"], // أضف تقنيات أخرى إذا تم برمجته
-      github: "https://github.com/yourusername/edamah", // استبدل بالرابط الفعلي
-      demo: "https://edamah-demo.com", // استبدل بالرابط الفعلي
+       // استبدل بالرابط الفعلي
     },
   ]
 
