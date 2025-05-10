@@ -35,7 +35,7 @@ export default function Home() {
     title: "مطور واجهات أمامية",
     bio: "مطور برمجيات متحمس مع خبرة في تطوير تطبيقات الويب. أسعى دائماً لتعلم تقنيات جديدة وتطوير مهاراتي البرمجية.",
     location: "الرياض، المملكة العربية السعودية",
-    email: "ahmed@example.com",
+    email: "Alghamdi.dev@gmail.com",
     social: {
       github: "https://github.com/3ntazDev",
       linkedin: "www.linkedin.com/in/fahad-alghamdi-a91969246",
