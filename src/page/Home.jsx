@@ -100,7 +100,7 @@ export default function NewspaperPortfolio() {
       {/* رأس الجريدة */}
       <header className="border-b-4 border-black py-6 px-4 md:px-8 bg-white">
         <div className="text-center mb-4">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-2"> SWE </h1>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-2"></h1>
           <div className="flex justify-between items-center text-sm">
             <p>{currentDate}</p>
             <p>العدد الأول - نسخة خاصة</p>
