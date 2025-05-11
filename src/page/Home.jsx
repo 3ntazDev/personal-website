@@ -84,7 +84,7 @@ export default function NewspaperPortfolio() {
       demo: "https://washy-way.vercel.app/",
     },
     {
-      title: "تطبيق",
+      title: "   تطبيق [ضيعت اغراضك ؟ ]",
       description:
         "تطبيق يساعد المستخدمين في البحث عن أغراضهم المفقودة بطريقة سهلة وبواجهة استخدام واضحة. تم تصميمه باستخدام Figma ليوفر تجربة مستخدم سلسة.",
       technologies: ["Figma"],
