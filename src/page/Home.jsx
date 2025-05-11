@@ -32,7 +32,7 @@ export default function NewspaperPortfolio() {
     email: "Alghamdi.dev@gmail.com",
     social: {
       github: "https://github.com/3ntazDev",
-      linkedin: "www.linkedin.com/in/fahad-alghamdi-a91969246",
+      linkedin: "https://www.linkedin.com/in/fahad-alghamdi-a91969246/",
     },
     // إضافة رابط السيرة الذاتية - قم بتغييره إلى الرابط الفعلي للملف
     cvUrl: "" 
@@ -237,14 +237,14 @@ export default function NewspaperPortfolio() {
           </div>
           <div className="flex gap-3">
             {/* زر تحميل السيرة الذاتية في القائمة */}
-            <a 
+            {/* <a 
               href={personalInfo.cvUrl} 
               download 
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               title="تحميل السيرة الذاتية"
             >
               <FileDown size={18} />
-            </a>
+            </a> */}
             <a href={`mailto:${personalInfo.email}`} className="p-2 rounded-full hover:bg-gray-100 transition-colors">
               <Mail size={18} />
             </a>
@@ -292,7 +292,7 @@ export default function NewspaperPortfolio() {
           <p className="text-lg leading-relaxed mb-6 max-w-3xl mx-auto">{personalInfo.bio}</p>
           
           {/* زر تحميل السيرة الذاتية */}
-          <motion.a
+          {/* <motion.a
             href={personalInfo.cvUrl}
             download
             className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-md mb-8 hover:bg-gray-800 transition-colors"
@@ -301,7 +301,7 @@ export default function NewspaperPortfolio() {
           >
             <FileDown size={20} />
             <span className="font-bold">تحميل السيرة الذاتية</span>
-          </motion.a>
+          </motion.a> */}
           
           <div className="flex gap-6 items-center justify-center mt-4">
             <motion.a
@@ -627,10 +627,9 @@ if (youNeedDeveloper) {
             <p className="font-bold text-lg mb-2">
               © {new Date().getFullYear()} {personalInfo.name} - جميع الحقوق محفوظة
             </p>
-            <p className="text-sm text-gray-600">تم تصميم هذا البورتفوليو بأسلوب الصحيفة الكلاسيكية مع لمسات عصرية</p>
             <div className="flex justify-center gap-4 mt-4">
               {/* زر تحميل السيرة الذاتية في التذييل */}
-              <motion.a
+              {/* <motion.a
                 href={personalInfo.cvUrl}
                 download
                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
@@ -639,7 +638,7 @@ if (youNeedDeveloper) {
                 title="تحميل السيرة الذاتية"
               >
                 <FileDown size={18} />
-              </motion.a>
+              </motion.a> */}
               <motion.a
                 href={`mailto:${personalInfo.email}`}
                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
