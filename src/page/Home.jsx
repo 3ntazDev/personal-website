@@ -1,1093 +1,3 @@
-// "use client"
-// import { useState, useEffect } from "react"
-// import {
-//   Github,
-//   Linkedin,
-//   Mail,
-//   MapPin,
-//   ExternalLink,
-//   ChevronDown,
-//   Code,
-//   Briefcase,
-//   Award,
-//   GitFork,
-//   Trophy,
-//   User,
-//   BarChart3,
-//   Brain,
-//   Palette,
-//   Star,
-//   Sparkles,
-//   Zap,
-//   Target,
-//   Rocket,
-//   Database,
-//   Building,
-//   Clock,
-// } from "lucide-react"
-// import { motion } from "framer-motion"
-
-// export default function PremiumPortfolio() {
-//   const [activeSection, setActiveSection] = useState("hero")
-//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-//   const personalInfo = {
-//     name: "فهد",
-//     title: "مهندس برمجيات",
-//     bio: "أنسج خيوط البرمجيات كما تُنسج الحكايات، أتنقّل بين مرافئ تحليل الأعمال وسفن البيانات، وأحمل في رحلتي بوصلة الجودة وإدارة المنتجات، لأرسم للعالم حلولًا تصنع الفرق",
-//     location: "الرياض، المملكة العربية السعودية",
-//     email: "Alghamdi.dev@gmail.com",
-//     social: {
-//       github: "https://github.com/3ntazDev",
-//       linkedin: "https://www.linkedin.com/in/fahad-alghamdi-a91969246/",
-//     },
-//     cvUrl: "",
-//   }
-
-//   const skills = [
-//     {
-//       category: "اللغات البرمجية",
-//       items: ["Python", "Java", "JavaScript"],
-//       icon: <Code className="w-6 h-6" />,
-//       color: "from-blue-500 via-indigo-500 to-purple-600",
-//       bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-100",
-//     },
-//     {
-//       category: "أدوات اختبار البرمجيات",
-//       items: ["Jest", "JMeter", "Katalon", "SonarQube"],
-//       icon: <Target className="w-6 h-6" />,
-//       color: "from-emerald-500 via-teal-500 to-cyan-600",
-//       bgPattern: "bg-gradient-to-br from-emerald-50 to-teal-100",
-//     },
-//     {
-//       category: "أدوات التطوير",
-//       items: ["Git", "GitHub"],
-//       icon: <Zap className="w-6 h-6" />,
-//       color: "from-purple-500 via-violet-500 to-indigo-600",
-//       bgPattern: "bg-gradient-to-br from-purple-50 to-violet-100",
-//     },
-//     {
-//       category: "الحوسبة السحابية",
-//       items: ["Oracle Cloud", "AWS"],
-//       icon: <Rocket className="w-6 h-6" />,
-//       color: "from-orange-500 via-red-500 to-pink-600",
-//       bgPattern: "bg-gradient-to-br from-orange-50 to-red-100",
-//     },
-//     {
-//       category: "أطر العمل والتقنيات",
-//       items: ["React", "Supabase", "Agile", "Waterfall", "Scrum"],
-//       icon: <Sparkles className="w-6 h-6" />,
-//       color: "from-pink-500 via-rose-500 to-red-600",
-//       bgPattern: "bg-gradient-to-br from-pink-50 to-rose-100",
-//     },
-//   ]
-
-//   const projectCategories = [
-//     {
-//       id: "ui-ux",
-//       title: "UI/UX Design",
-//       icon: <Palette className="w-8 h-8" />,
-//       color: "from-pink-500 via-rose-500 to-red-600",
-//       bgGradient: "bg-gradient-to-br from-pink-50 via-rose-50 to-red-50",
-//       projects: [
-//         {
-//           title: "تطبيق [ضيعت اغراضك ؟ ]",
-//           description:
-//             "تطبيق يساعد المستخدمين في البحث عن أغراضهم المفقودة بطريقة سهلة وبواجهة استخدام واضحة. تم تصميمه باستخدام Figma ليوفر تجربة مستخدم سلسة",
-//           technologies: ["Figma"],
-//         },
-//         {
-//           title: "نظام Edamah",
-//           description:
-//             "نظام يربط الجمعيات الخيرية بالمطاعم لإعادة توزيع الفائض من الطعام بشكل فعّال، ويهدف إلى تقليل الهدر وتعزيز الاستدامة",
-//           technologies: ["Figma"],
-//         },
-//       ],
-//     },
-//     {
-//       id: "developer",
-//       title: "Development",
-//       icon: <Code className="w-8 h-8" />,
-//       color: "from-blue-500 via-indigo-500 to-purple-600",
-//       bgGradient: "bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50",
-//       projects: [
-//         {
-//           title: "منصة FabMatch",
-//           description:
-//             "منصة تربط الأفراد والشركات مع أصحاب الطابعات ثلاثية الأبعاد، وتوفر مزايا مثل نظام المزايدة، الدعم الذكي بالذكاء الاصطناعي، المعاملات الآمنة، وعرض الخدمات",
-//           technologies: ["AWS", "React", "Tailwind CSS", "n8n", "Supabase"],
-//           demo: "https://fabmatch.org",
-//         },
-//         {
-//           title: "WashyWay",
-//           description:
-//             "تطبيق ويب لحجز غسيل السيارات في أماكن متعددة بسهولة. يمكن للمستخدمين تصفح الخدمات القريبة وتحديد مواعيد الغسيل إلكترونيًا",
-//           technologies: ["React", "Tailwind CSS", "Supabase"],
-//           demo: "https://washy-way.vercel.app/",
-//         },
-//       ],
-//     },
-//     {
-//       id: "data-engineer",
-//       title: "Data Engineering",
-//       icon: <Database className="w-8 h-8" />,
-//       color: "from-green-500 via-emerald-500 to-teal-600",
-//       bgGradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50",
-//       projects: [],
-//     },
-//     {
-//       id: "product-owner",
-//       title: "Product Owner",
-//       icon: <User className="w-8 h-8" />,
-//       color: "from-indigo-500 via-purple-500 to-pink-600",
-//       bgGradient: "bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50",
-//       projects: [],
-//     },
-//     {
-//       id: "business-analysis",
-//       title: "Business Analysis",
-//       icon: <BarChart3 className="w-8 h-8" />,
-//       color: "from-emerald-500 via-teal-500 to-cyan-600",
-//       bgGradient: "bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50",
-//       projects: [],
-//     },
-//     {
-//       id: "business-intelligence",
-//       title: "Business Intelligence",
-//       icon: <Brain className="w-8 h-8" />,
-//       color: "from-amber-500 via-orange-500 to-red-600",
-//       bgGradient: "bg-gradient-to-br from-amber-50 via-orange-50 to-red-50",
-//       projects: [],
-//     },
-//   ]
-
-//   const contributions = [
-//     {
-//       title: "بوصلة - المساعد الدراسي",
-//       description:
-//         "مساعد دراسي ذكي يساعد الطلاب الجامعيين في جميع جامعات المملكة العربية السعودية. يوفر التطبيق مميزات متنوعة لتسهيل الحياة الأكاديمية للطلاب.",
-//       link: "قريباً إن شاء الله",
-//       technologies: ["React Native", "Node.js", "MongoDB", "Firebase"],
-//       role: "Team Leader & Project Owner",
-//       company: "شركة هيبرا",
-//     },
-//     {
-//       title: "أقيام - نتائج الرياضات الإلكترونية",
-//       description:
-//         "منصة متخصصة في عرض وتتبع نتائج الرياضات الإلكترونية والبطولات المختلفة. توفر إحصائيات مفصلة ومتابعة حية للمباريات والفرق.",
-//       link: "https://apps.apple.com/app/agyam/id6670207726",
-//       technologies: ["React Native", "Express.js", "PostgreSQL", "Socket.io"],
-//       role: "Team Leader & Project Owner",
-//       company: "شركة هيبرا",
-//     },
-//   ]
-
-//   const achievements = [
-//     {
-//       title: "المركز الأول في مسابقة CODE IN البرمجية",
-//       organization: "مسابقة CODE IN",
-//       year: "2024",
-//       description:
-//         "حصلت على المركز الأول في مسابقة CODE IN البرمجية التي تهدف إلى تطوير مهارات البرمجة وحل المشاكل التقنية",
-//       image: "", // يمكن إضافة صورة الجائزة لاحقاً
-//     },
-//     {
-//       title: "Soon!",
-//       organization: "   ",
-//       year: "",
-//       description: "",
-//       image: "", // Support for achievement images
-//     },
-//   ]
-
-//   const certifications = [
-//     {
-//       title: "Oracle Certified Associate – Oracle Cloud Infrastructure 2025 Foundations",
-//       issuer: "Oracle",
-//       date: "2025",
-//       description: "شهادة تُثبت الفهم الأساسي لبنية Oracle السحابية (OCI) ومفاهيم الحوسبة السحابية",
-//       link: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=8E40C2DE93712A60F3B610D974E353764EDA7D496391DA614272170F4D220AC8",
-//     },
-//   ]
-
-//   const experiences = [
-//     {
-//       type: "training",
-//       title: "Software Engineer Intern",
-//       organization: "Confidential Government",
-//       position: "Software Engineer Intern",
-//       duration: "يونيو 2025 - الحالي · 3 أشهر",
-//       description: "تدريب في تطوير البرمجيات في جهة حكومية",
-//       tags: ["Software Development", "Government Sector"],
-//       logo: "",
-//     },
-//     {
-//       type: "volunteer",
-//       title: "Google Developer Student Club | PSAU",
-//       organization: "Google Developer Student Club",
-//       position: "Project Manager",
-//       duration: "فبراير 2024 - فبراير 2024 · 1 شهر",
-//       description: "إدارة المشاريع وتنسيق الأنشطة التقنية",
-//       tags: ["Project Planning", "Member Relations"],
-//       logo: "",
-//     },
-//     {
-//       type: "volunteer",
-//       title: "Google Developer Student Club | PSAU",
-//       organization: "Google Developer Student Club",
-//       position: "Member",
-//       duration: "يناير 2023 - فبراير 2024 · 1 سنة 2 شهر",
-//       description: "عضو نشط في النادي التقني",
-//       tags: ["Member Relations"],
-//       logo: "",
-//     },
-//     {
-//       type: "volunteer",
-//       title: "Software Engineering Club",
-//       organization: "Software Engineering Club",
-//       position: "Designer",
-//       duration: "أبريل 2023 - مارس 2024 · 1 سنة",
-//       description: "تصميم واجهات المستخدم والهوية البصرية للنادي",
-//       tags: ["User Interface Design", "Member Relations"],
-//       logo: "",
-//     },
-//     {
-//       type: "volunteer",
-//       title: "Software Engineering Club",
-//       organization: "Software Engineering Club",
-//       position: "Member",
-//       duration: "فبراير 2022 - مارس 2023 · 1 سنة 2 شهر",
-//       description: "عضو مؤسس في نادي هندسة البرمجيات",
-//       tags: ["Member Relations", "Membership Building"],
-//       logo: "",
-//     },
-//   ]
-
-//   const staggerContainer = {
-//     hidden: { opacity: 0 },
-//     visible: {
-//       opacity: 1,
-//       transition: {
-//         staggerChildren: 0.1,
-//         delayChildren: 0.2,
-//       },
-//     },
-//   }
-
-//   const fadeInUp = {
-//     hidden: { opacity: 0, y: 30 },
-//     visible: {
-//       opacity: 1,
-//       y: 0,
-//       transition: {
-//         duration: 0.6,
-//         ease: "easeOut",
-//       },
-//     },
-//   }
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const sections = document.querySelectorAll("section[id]")
-//       const scrollPosition = window.scrollY + 200
-
-//       sections.forEach((section) => {
-//         const sectionTop = section.offsetTop
-//         const sectionHeight = section.offsetHeight
-//         const sectionId = section.getAttribute("id") || ""
-
-//         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-//           setActiveSection(sectionId)
-//         }
-//       })
-//     }
-
-//     const handleMouseMove = (e) => {
-//       setMousePosition({ x: e.clientX, y: e.clientY })
-//     }
-
-//     window.addEventListener("scroll", handleScroll)
-//     window.addEventListener("mousemove", handleMouseMove)
-
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll)
-//       window.removeEventListener("mousemove", handleMouseMove)
-//     }
-//   }, [])
-
-//   const scrollToSection = (sectionId) => {
-//     const section = document.getElementById(sectionId)
-//     if (section) {
-//       window.scrollTo({
-//         top: section.offsetTop - 80,
-//         behavior: "smooth",
-//       })
-//     }
-//   }
-
-//   const containerVariants = {
-//     hidden: { opacity: 0 },
-//     visible: {
-//       opacity: 1,
-//       transition: {
-//         staggerChildren: 0.1,
-//         delayChildren: 0.2,
-//       },
-//     },
-//   }
-
-//   const itemVariants = {
-//     hidden: { opacity: 0, y: 30 },
-//     visible: {
-//       opacity: 1,
-//       y: 0,
-//       transition: {
-//         duration: 0.6,
-//         ease: "easeOut",
-//       },
-//     },
-//   }
-
-//   const navItems = [
-//     { id: "hero", label: "الرئيسية" },
-//     { id: "skills", label: "المهارات" },
-//     { id: "experience", label: "الخبرات" },
-//     { id: "contributions", label: "المساهمات" },
-//     { id: "projects", label: "المشاريع" },
-//     { id: "certifications", label: "الشهادات" },
-//     { id: "achievements", label: "الجوائز" },
-//   ]
-
-//   return (
-//     <div
-//       className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 text-right relative overflow-hidden"
-//       dir="rtl"
-//     >
-//       <div className="fixed inset-0 z-0">
-//         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-pink-50/30"></div>
-//         <div
-//           className="absolute w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"
-//           style={{
-//             left: mousePosition.x - 192,
-//             top: mousePosition.y - 192,
-//             transition: "all 0.3s ease-out",
-//           }}
-//         ></div>
-//       </div>
-
-//       {/* القائمة الثابتة */}
-//       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-lg shadow-black/5">
-//         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
-//           <div className="flex justify-between items-center">
-//             <motion.div
-//               className="flex items-center gap-2 sm:gap-3"
-//               initial={{ opacity: 0, x: -20 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.6 }}
-//             >
-//               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg shadow-purple-500/25">
-//                 {personalInfo.name.charAt(0)}
-//               </div>
-//               <div className="hidden sm:block">
-//                 <span className="font-bold text-lg sm:text-xl text-gray-800 block">{personalInfo.name}</span>
-//                 <span className="text-xs sm:text-sm text-gray-600">{personalInfo.title}</span>
-//               </div>
-//             </motion.div>
-
-//             <div className="hidden lg:flex gap-2">
-//               {[
-//                 { id: "hero", label: "الرئيسية", icon: <Star className="w-4 h-4" /> },
-//                 { id: "skills", label: "المهارات", icon: <Zap className="w-4 h-4" /> },
-//                 { id: "experience", label: "الخبرات", icon: <Building className="w-4 h-4" /> },
-//                 { id: "contributions", label: "المساهمات", icon: <GitFork className="w-4 h-4" /> },
-//                 { id: "projects", label: "المشاريع", icon: <Briefcase className="w-4 h-4" /> },
-//                 { id: "certifications", label: "الشهادات", icon: <Award className="w-4 h-4" /> },
-//                 { id: "achievements", label: "الجوائز", icon: <Trophy className="w-4 h-4" /> },
-//               ].map((item) => (
-//                 <motion.button
-//                   key={item.id}
-//                   onClick={() => scrollToSection(item.id)}
-//                   className={`flex items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 text-sm ${
-//                     activeSection === item.id
-//                       ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25"
-//                       : "hover:bg-white/60 text-gray-700 hover:shadow-md"
-//                   }`}
-//                   whileHover={{ scale: 1.05 }}
-//                   whileTap={{ scale: 0.95 }}
-//                 >
-//                   {item.icon}
-//                   <span className="font-medium hidden xl:inline">{item.label}</span>
-//                 </motion.button>
-//               ))}
-//             </div>
-
-//             <div className="flex gap-1 sm:gap-2">
-//               <motion.a
-//                 href={`mailto:${personalInfo.email}`}
-//                 className="p-2 sm:p-3 rounded-xl bg-white/60 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-//                 whileHover={{ scale: 1.1, rotate: 5 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
-//               </motion.a>
-//               <motion.a
-//                 href={personalInfo.social.github}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="p-2 sm:p-3 rounded-xl bg-white/60 hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-900 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-//                 whileHover={{ scale: 1.1, rotate: -5 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
-//               </motion.a>
-//               <motion.a
-//                 href={personalInfo.social.linkedin}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="p-2 sm:p-3 rounded-xl bg-white/60 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-//                 whileHover={{ scale: 1.1, rotate: 5 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 <Linkedin size={16} className="sm:w-[18px] sm:h-[18px]" />
-//               </motion.a>
-//             </div>
-//           </div>
-//         </div>
-//       </nav>
-
-//       {/* قسم البطل (Hero) */}
-//       <section
-//         id="hero"
-//         className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20"
-//       >
-//         <div className="max-w-6xl mx-auto text-center">
-//           <motion.div
-//             initial={{ opacity: 0, y: 30 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.8 }}
-//             className="mb-6 sm:mb-8"
-//           >
-//             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-//               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-//               <span className="text-blue-700 font-medium text-sm sm:text-base">مرحباً بك في عالمي الرقمي</span>
-//             </div>
-
-//             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent leading-tight">
-//               {personalInfo.name}
-//             </h1>
-
-//             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-gray-700">
-//               {personalInfo.title}
-//             </h2>
-
-//             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
-//               <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-//               <span className="text-gray-600 text-base sm:text-lg">{personalInfo.location}</span>
-//             </div>
-//           </motion.div>
-
-//           <motion.p
-//             initial={{ opacity: 0, y: 20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.8, delay: 0.2 }}
-//             className="text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 sm:mb-12 max-w-4xl mx-auto text-gray-700 font-light px-4"
-//           >
-//             {personalInfo.bio}
-//           </motion.p>
-
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.8, delay: 0.4 }}
-//             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
-//           >
-//             <motion.button
-//               onClick={() => scrollToSection("projects")}
-//               className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-bold text-base sm:text-lg shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 w-full sm:w-auto"
-//               whileHover={{ scale: 1.05, y: -2 }}
-//               whileTap={{ scale: 0.95 }}
-//             >
-//               <span className="relative z-10 flex items-center gap-2">
-//                 <Rocket className="w-4 h-4 sm:w-5 sm:h-5" />
-//                 استكشف أعمالي
-//               </span>
-//               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-//             </motion.button>
-
-//             <motion.a
-//               href={`mailto:${personalInfo.email}`}
-//               className="px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-800 rounded-2xl font-bold text-base sm:text-lg hover:bg-white hover:border-blue-300 hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
-//               whileHover={{ scale: 1.05, y: -2 }}
-//               whileTap={{ scale: 0.95 }}
-//             >
-//               <span className="flex items-center gap-2">
-//                 <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-//                 تواصل معي
-//               </span>
-//             </motion.a>
-//           </motion.div>
-
-//           <motion.div
-//             className="mt-12 sm:mt-16"
-//             animate={{ y: [0, 10, 0] }}
-//             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
-//           >
-//             <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 mx-auto" />
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       {/* قسم المهارات */}
-//       <section id="skills" className="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
-//         <motion.div
-//           className="max-w-7xl mx-auto"
-//           initial="hidden"
-//           whileInView="visible"
-//           viewport={{ once: true, amount: 0.3 }}
-//           variants={staggerContainer}
-//         >
-//           <motion.div className="text-center mb-12 sm:mb-16" variants={fadeInUp}>
-//             <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-//               <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
-//               <span className="text-blue-700 font-medium text-sm sm:text-base">المهارات التقنية</span>
-//             </div>
-//             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 sm:mb-4">خبراتي التقنية</h3>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-//               مجموعة متنوعة من المهارات والتقنيات التي أتقنها في مجال التطوير
-//             </p>
-//           </motion.div>
-
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-//             {skills.map((skillGroup, index) => (
-//               <motion.div
-//                 key={index}
-//                 initial={{ opacity: 0, y: 30 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.6, delay: index * 0.1 }}
-//                 className={`group relative p-6 sm:p-8 ${skillGroup.bgPattern} backdrop-blur-sm border border-white/50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}
-//                 whileHover={{ scale: 1.02 }}
-//               >
-//                 <div
-//                   className={`absolute inset-0 bg-gradient-to-r ${skillGroup.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}
-//                 ></div>
-
-//                 <div className="relative z-10">
-//                   <div
-//                     className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${skillGroup.color} rounded-2xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-//                   >
-//                     {skillGroup.icon}
-//                   </div>
-
-//                   <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">{skillGroup.category}</h4>
-
-//                   <div className="flex flex-wrap gap-2 sm:gap-3">
-//                     {skillGroup.items.map((skill, skillIndex) => (
-//                       <motion.span
-//                         key={skillIndex}
-//                         className="px-3 py-1 bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl text-xs sm:text-sm font-medium text-gray-700 hover:bg-white hover:shadow-md transition-all duration-300"
-//                         whileHover={{ scale: 1.05 }}
-//                         initial={{ opacity: 0, scale: 0.8 }}
-//                         whileInView={{ opacity: 1, scale: 1 }}
-//                         viewport={{ once: true }}
-//                         transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
-//                       >
-//                         {skill}
-//                       </motion.span>
-//                     ))}
-//                   </div>
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </motion.div>
-//       </section>
-
-//       <section
-//         id="experience"
-//         className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-green-50/30 to-emerald-50/30"
-//       >
-//         <motion.div
-//           className="max-w-6xl mx-auto"
-//           initial="hidden"
-//           whileInView="visible"
-//           viewport={{ once: true, amount: 0.3 }}
-//           variants={staggerContainer}
-//         >
-//           <motion.div className="text-center mb-12 sm:mb-16" variants={fadeInUp}>
-//             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-//               <Building className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
-//               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-//                 الخبرات المهنية
-//               </h2>
-//             </div>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-//               رحلتي المهنية والتطوعية مع الشركات والمؤسسات المختلفة
-//             </p>
-//           </motion.div>
-
-//           <div className="grid gap-6 sm:gap-8">
-//             {experiences.map((exp, index) => (
-//               <motion.div
-//                 key={index}
-//                 className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-green-100/50"
-//                 variants={fadeInUp}
-//                 whileHover={{ y: -5, scale: 1.02 }}
-//               >
-//                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-//                 <div className="relative z-10">
-//                   <div className="flex items-start justify-between mb-4 sm:mb-6">
-//                     <div className="flex items-center gap-3 sm:gap-4">
-//                       {exp.logo && (
-//                         <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center overflow-hidden">
-//                           <img
-//                             src={exp.logo || "/placeholder.svg"}
-//                             alt={exp.organization}
-//                             className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
-//                           />
-//                         </div>
-//                       )}
-//                       <div>
-//                         <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">{exp.title}</h3>
-//                         <p className="text-base text-green-600 font-semibold">{exp.organization}</p>
-//                         {exp.position && <p className="text-gray-600 mt-1">{exp.position}</p>}
-//                       </div>
-//                     </div>
-
-//                     <div className="text-left">
-//                       <span
-//                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-//                           exp.type === "work"
-//                             ? "bg-blue-100 text-blue-800"
-//                             : exp.type === "volunteer"
-//                               ? "bg-green-100 text-green-800"
-//                               : "bg-purple-100 text-purple-800"
-//                         }`}
-//                       >
-//                         {exp.type === "work" ? "عمل" : exp.type === "volunteer" ? "تطوع" : "تدريب"}
-//                       </span>
-//                       {exp.duration && <p className="text-sm text-gray-500 mt-2">{exp.duration}</p>}
-//                     </div>
-//                   </div>
-
-//                   {exp.description && <p className="text-gray-700 mb-4 sm:mb-6 leading-relaxed">{exp.description}</p>}
-
-//                   {exp.tags && exp.tags.length > 0 && (
-//                     <div className="flex flex-wrap gap-2">
-//                       {exp.tags.map((tag, tagIndex) => (
-//                         <motion.span
-//                           key={tagIndex}
-//                           className="px-2 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 rounded-full text-xs font-medium hover:from-green-200 hover:to-emerald-200 transition-all duration-300"
-//                           whileHover={{ scale: 1.05 }}
-//                         >
-//                           {tag}
-//                         </motion.span>
-//                       ))}
-//                     </div>
-//                   )}
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </motion.div>
-//       </section>
-
-//       <section
-//         id="contributions"
-//         className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-purple-50/30 to-pink-50/30"
-//       >
-//         <motion.div
-//           className="max-w-6xl mx-auto"
-//           initial="hidden"
-//           whileInView="visible"
-//           viewport={{ once: true, amount: 0.3 }}
-//           variants={staggerContainer}
-//         >
-//           <motion.div className="text-center mb-12 sm:mb-16" variants={fadeInUp}>
-//             <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg mb-4 sm:mb-6">
-//               <GitFork className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
-//               <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-//                 المساهمات والمشاريع
-//               </h2>
-//             </div>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-//               مشاريع تطوير التطبيقات والمنصات الرقمية التي ساهمت في تطويرها
-//             </p>
-//           </motion.div>
-
-//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-//             {contributions.map((contribution, index) => (
-//               <motion.div
-//                 key={index}
-//                 className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-purple-100/50 hover:border-purple-300/50 overflow-hidden"
-//                 variants={fadeInUp}
-//                 whileHover={{ y: -10, scale: 1.02 }}
-//               >
-//                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-//                 <div className="relative z-10">
-//                   <div className="flex items-start justify-between mb-4">
-//                     <div className="flex-1 min-w-0">
-//                       <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors truncate">
-//                         {contribution.title}
-//                       </h3>
-//                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-//                         <span className="text-xs sm:text-sm font-medium text-purple-600 bg-purple-100 px-3 py-1 rounded-full w-fit">
-//                           {contribution.role}
-//                         </span>
-//                         <span className="text-xs sm:text-sm text-gray-500">{contribution.company}</span>
-//                       </div>
-//                     </div>
-//                     <motion.div
-//                       animate={{ rotate: [0, 10, 0] }}
-//                       transition={{ repeat: Number.POSITIVE_INFINITY, duration: 3 }}
-//                     >
-//                       <GitFork className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
-//                     </motion.div>
-//                   </div>
-
-//                   <p className="text-gray-600 mb-6 leading-relaxed">{contribution.description}</p>
-
-//                   <div className="flex flex-wrap gap-2 mb-6">
-//                     {contribution.technologies.map((tech, techIndex) => (
-//                       <motion.span
-//                         key={techIndex}
-//                         className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:from-purple-200 hover:to-pink-200 transition-all cursor-default"
-//                         whileHover={{ scale: 1.05 }}
-//                       >
-//                         {tech}
-//                       </motion.span>
-//                     ))}
-//                   </div>
-
-//                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-//                     {contribution.link ? (
-//                       <motion.a
-//                         href={contribution.link}
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="inline-flex items-center justify-center gap-2 text-purple-600 hover:text-purple-800 font-medium bg-purple-50 hover:bg-purple-100 px-4 py-2 rounded-xl transition-all duration-300 text-sm"
-//                         whileHover={{ scale: 1.05 }}
-//                       >
-//                         <ExternalLink className="w-4 h-4" />
-//                         <span>عرض التطبيق</span>
-//                       </motion.a>
-//                     ) : (
-//                       <div className="inline-flex items-center justify-center gap-2 text-gray-500 bg-gray-100 px-4 py-2 rounded-xl text-sm">
-//                         <Clock className="w-4 h-4" />
-//                         <span>قريباً إن شاء الله</span>
-//                       </div>
-//                     )}
-//                   </div>
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </motion.div>
-//       </section>
-
-//       <section
-//         id="projects"
-//         className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50/50 to-white/50"
-//       >
-//         <div className="max-w-7xl mx-auto">
-//           <motion.div
-//             initial={{ opacity: 0, y: 30 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8 }}
-//             className="text-center mb-12 sm:mb-16"
-//           >
-//             <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-200/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-//               <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
-//               <span className="text-purple-700 font-medium text-sm sm:text-base">معرض الأعمال</span>
-//             </div>
-//             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 sm:mb-4">مشاريعي المتنوعة</h3>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-//               مجموعة من المشاريع المتنوعة التي تعكس خبرتي في مختلف المجالات التقنية
-//             </p>
-//           </motion.div>
-
-//           <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 sm:gap-12">
-//             {projectCategories.map((category, index) => (
-//               <motion.div
-//                 key={index}
-//                 initial={{ opacity: 0, y: 30 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.6, delay: index * 0.1 }}
-//                 className={`group relative p-6 sm:p-8 ${category.bgPattern} backdrop-blur-sm border border-white/50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500`}
-//                 whileHover={{ scale: 1.01 }}
-//               >
-//                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
-
-//                 <div className="relative z-10">
-//                   <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-//                     <div
-//                       className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${category.color} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
-//                     >
-//                       {category.icon}
-//                     </div>
-//                     <div>
-//                       <h4 className="text-2xl sm:text-3xl font-black text-gray-900">{category.title}</h4>
-//                       <div className={`h-1 w-16 sm:w-20 bg-gradient-to-r ${category.color} rounded-full mt-2`}></div>
-//                     </div>
-//                   </div>
-
-//                   {category.projects.length > 0 ? (
-//                     <div className="space-y-6">
-//                       {category.projects.map((project, projectIndex) => (
-//                         <motion.div
-//                           key={projectIndex}
-//                           initial={{ opacity: 0, scale: 0.9 }}
-//                           whileInView={{ opacity: 1, scale: 1 }}
-//                           viewport={{ once: true }}
-//                           transition={{ duration: 0.6, delay: projectIndex * 0.1 }}
-//                           className="group/project relative p-4 sm:p-6 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-//                           whileHover={{ scale: 1.02 }}
-//                         >
-//                           <h5 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{project.title}</h5>
-//                           <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-//                             {project.description}
-//                           </p>
-
-//                           <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-//                             {project.technologies.map((tech, techIndex) => (
-//                               <span
-//                                 key={techIndex}
-//                                 className={`px-2 sm:px-3 py-1 bg-gradient-to-r ${category.color} text-white rounded-lg text-xs sm:text-sm font-medium shadow-sm`}
-//                               >
-//                                 {tech}
-//                               </span>
-//                             ))}
-//                           </div>
-
-//                           {project.demo && (
-//                             <motion.a
-//                               href={project.demo}
-//                               target="_blank"
-//                               rel="noopener noreferrer"
-//                               className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium group-hover/project:translate-x-1 transition-transform duration-300"
-//                               whileHover={{ scale: 1.05 }}
-//                             >
-//                               <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-//                               <span>عرض المشروع</span>
-//                             </motion.a>
-//                           )}
-//                         </motion.div>
-//                       ))}
-//                     </div>
-//                   ) : (
-//                     <div className="text-center py-8 sm:py-12">
-//                       <div
-//                         className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-full flex items-center justify-center text-white mx-auto mb-4 sm:mb-6 opacity-50`}
-//                       >
-//                         <Sparkles className="w-8 h-8 sm:w-12 sm:h-12" />
-//                       </div>
-//                       <p className="text-xl sm:text-2xl font-bold text-gray-500 mb-2">قريباً...</p>
-//                       <p className="text-gray-400">مشاريع مثيرة قادمة في هذا المجال</p>
-//                     </div>
-//                   )}
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       <section id="certifications" className="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
-//         <div className="max-w-6xl mx-auto">
-//           <motion.div
-//             initial={{ opacity: 0, y: 30 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8 }}
-//             className="text-center mb-12 sm:mb-16"
-//           >
-//             <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm border border-emerald-200/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-//               <Award className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
-//               <span className="text-emerald-700 font-medium text-sm sm:text-base">الشهادات المهنية</span>
-//             </div>
-//             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 sm:mb-4">شهاداتي المعتمدة</h3>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-//               الشهادات المهنية التي حصلت عليها لتطوير مهاراتي التقنية
-//             </p>
-//           </motion.div>
-
-//           <div className="space-y-6">
-//             {certifications.map((cert, index) => (
-//               <motion.div
-//                 key={index}
-//                 initial={{ opacity: 0, x: -30 }}
-//                 whileInView={{ opacity: 1, x: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.6, delay: index * 0.1 }}
-//                 className="group relative p-6 sm:p-8 bg-gradient-to-br from-white/80 to-emerald-50/50 backdrop-blur-sm border border-white/50 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
-//                 whileHover={{ scale: 1.01 }}
-//               >
-//                 <div className="flex items-start gap-4 sm:gap-6">
-//                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-//                     <Award className="w-8 h-8 sm:w-10 sm:h-10" />
-//                   </div>
-
-//                   <div className="flex-1">
-//                     <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">{cert.title}</h4>
-//                     <p className="text-emerald-600 font-medium mb-2 sm:mb-3">
-//                       {cert.issuer} • {cert.date}
-//                     </p>
-//                     <p className="text-gray-700 mb-3 sm:mb-4 leading-relaxed">{cert.description}</p>
-//                     {cert.link && (
-//                       <motion.a
-//                         href={cert.link}
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-//                         whileHover={{ scale: 1.05 }}
-//                         whileTap={{ scale: 0.95 }}
-//                       >
-//                         <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-//                         <span>عرض الشهادة</span>
-//                       </motion.a>
-//                     )}
-//                   </div>
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       <section
-//         id="achievements"
-//         className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-amber-50/30 to-orange-50/30"
-//       >
-//         <div className="max-w-6xl mx-auto">
-//           <motion.div
-//             initial={{ opacity: 0, y: 30 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8 }}
-//             className="text-center mb-12 sm:mb-16"
-//           >
-//             <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur-sm border border-amber-200/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-//               <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
-//               <span className="text-amber-700 font-medium text-sm sm:text-base">الجوائز والإنجازات</span>
-//             </div>
-//             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 sm:mb-4">إنجازاتي المميزة</h3>
-//             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-//               الجوائز والإنجازات التي حققتها في مسيرتي المهنية
-//             </p>
-//           </motion.div>
-
-//           <div className="space-y-6">
-//             {achievements.map((achievement, index) => (
-//               <motion.div
-//                 key={index}
-//                 initial={{ opacity: 0, scale: 0.9 }}
-//                 whileInView={{ opacity: 1, scale: 1 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.6, delay: index * 0.1 }}
-//                 className="group relative p-6 sm:p-8 bg-gradient-to-br from-white/80 to-amber-50/50 backdrop-blur-sm border border-white/50 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500"
-//                 whileHover={{ scale: 1.01 }}
-//               >
-//                 <div className="flex items-center justify-center">
-//                   {achievement.image ? (
-//                     <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden shadow-2xl group-hover:scale-110 transition-transform duration-300">
-//                       <img
-//                         src={achievement.image || "/placeholder.svg"}
-//                         alt={achievement.title}
-//                         className="w-full h-full object-cover"
-//                       />
-//                     </div>
-//                   ) : (
-//                     <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white shadow-2xl group-hover:scale-110 transition-transform duration-300">
-//                       <Trophy className="w-12 h-12 sm:w-16 sm:h-16" />
-//                     </div>
-//                   )}
-//                 </div>
-
-//                 <div className="text-center mt-6 sm:mt-8">
-//                   <h4 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">{achievement.title}</h4>
-//                   <p className="text-lg text-amber-600 font-medium mb-3 sm:mb-4">
-//                     {achievement.organization} • {achievement.year}
-//                   </p>
-//                   <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto px-4">
-//                     {achievement.description}
-//                   </p>
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       <motion.button
-//         className="fixed bottom-4 sm:bottom-8 left-4 sm:left-8 p-3 sm:p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl shadow-2xl shadow-blue-500/25 z-50 hover:shadow-3xl hover:shadow-blue-500/40 transition-all duration-300"
-//         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-//         initial={{ opacity: 0, scale: 0 }}
-//         animate={{
-//           opacity: activeSection !== "hero" ? 1 : 0,
-//           scale: activeSection !== "hero" ? 1 : 0,
-//         }}
-//         whileHover={{ scale: 1.1, rotate: 5 }}
-//         whileTap={{ scale: 0.9 }}
-//       >
-//         <ChevronDown className="w-4 h-4 sm:w-6 sm:h-6 transform rotate-180" />
-//       </motion.button>
-
-//       <footer className="relative z-10 py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-black text-white">
-//         <div className="max-w-6xl mx-auto text-center">
-//           <div className="mb-6 sm:mb-8">
-//             <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl sm:text-2xl mx-auto mb-3 sm:mb-4 shadow-2xl">
-//               {personalInfo.name.charAt(0)}
-//             </div>
-//             <h4 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">{personalInfo.name}</h4>
-//             <p className="text-gray-400">{personalInfo.title}</p>
-//           </div>
-
-//           <div className="flex justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-//             <motion.a
-//               href={`mailto:${personalInfo.email}`}
-//               className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl hover:bg-white/20 transition-all duration-300"
-//               whileHover={{ scale: 1.1, y: -2 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
-//             </motion.a>
-//             <motion.a
-//               href={personalInfo.social.github}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl hover:bg-white/20 transition-all duration-300"
-//               whileHover={{ scale: 1.1, y: -2 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               <Github className="w-5 h-5 sm:w-6 sm:h-6" />
-//             </motion.a>
-//             <motion.a
-//               href={personalInfo.social.linkedin}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl hover:bg-white/20 transition-all duration-300"
-//               whileHover={{ scale: 1.1, y: -2 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
-//             </motion.a>
-//           </div>
-
-//           <div className="border-t border-white/20 pt-6 sm:pt-8">
-//             <p className="text-gray-400">
-//               © {new Date().getFullYear()} {personalInfo.name} - جميع الحقوق محفوظة
-//             </p>
-//             <p className="text-gray-500 mt-2">صُمم بعناية لإبراز الإبداع والاحترافية</p>
-//           </div>
-//         </div>
-//       </footer>
-//     </div>
-//   )
-// }
 "use client"
 import { useState, useEffect } from "react"
 import {
@@ -1112,6 +22,8 @@ import {
   BarChart3,
   Brain,
   Star,
+  MessageSquare,
+  Quote,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -1391,33 +303,121 @@ export default function FuturisticPortfolio() {
     },
   ]
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Ibrahim Alotaibi",
+      role: "Co-Founder & Lead Software Developer",
+      company: "Tech Company",
+      content:
+        "فهد مطور برمجيات متميز يتمتع بمهارات تقنية عالية وقدرة على حل المشاكل المعقدة. عمل معي في عدة مشاريع وأظهر احترافية عالية في التعامل مع التقنيات الحديثة. أنصح بالتعامل معه بشدة.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+    {
+      id: 2,
+      name: "Mohammed Assiri",
+      role: "Engineering Innovation & Building Ventures",
+      company: "جامعة الامير سطام ",
+      content:
+        "فهد طالب متميز ومبدع في مجال هندسة البرمجيات. يتمتع بقدرة على التفكير النقدي وحل المشاكل بطرق إبداعية. مشاركته في المشاريع الأكاديمية كانت مثمرة جداً.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+    {
+      id: 3,
+      name: "رزان الودعاني",
+      role: "Software Engineer & Project Manager",
+      company: "شركة تقنية",
+      content:
+        "فهد مطور موهوب وملتزم. عمل تحت إشرافي في عدة مشاريع وأظهر قدرة ممتازة على العمل ضمن الفريق وإنجاز المهام في الوقت المحدد. مهاراته التقنية والقيادية مميزة.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+    {
+      id: 4,
+      name: "Saeed Almousa",
+      role: "Software Engineering Student",
+      company: "جامعة الأمير سطام",
+      content:
+        "فهد زميل فريق رائع. عملنا معاً في مشاريع جامعية متعددة وكان دائماً الشخص الذي يمكن الاعتماد عليه. مهاراته في البرمجة والتصميم متقدمة جداً.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+    {
+      id: 5,
+      name: "Eng.Osama Alghamdi",
+      role: "Data Analyst",
+      company: "شركة تحليل البيانات",
+      content:
+        "تعاملت مع فهد في عدة مشاريع وكان دائماً محترف في عمله. قدرته على فهم متطلبات المشروع وتنفيذها بدقة مذهلة. أنصح بالتعامل معه.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+    {
+      id: 6,
+      name: "Naif Alqahtani",
+      role: "Aspiring Product Manager",
+      company: "المجلس الطلابي",
+      content:
+        "فهد زميل مميز في المجلس الطلابي. مهاراته القيادية والتنظيمية ساعد كثيراً في إنجاح الفعاليات والمشاريع. شخص يمكن الاعتماد عليه.",
+      rating: 5,
+      avatar: null, // Removed image path to use default icon
+    },
+  ]
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY)
-      const sections = document.querySelectorAll("section[id]")
-      const scrollPosition = window.scrollY + 200
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.offsetHeight
-        const sectionId = section.getAttribute("id") || ""
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(sectionId)
+      const sections = [
+        "hero",
+        "skills",
+        "projects",
+        "experience",
+        "contributions",
+        "testimonials",
+        "certifications",
+        "achievements",
+      ]
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
         }
+        return false
+      })
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
+    }
+
+    const updateTime = () => setCurrentTime(new Date())
+    const updateStats = () => {
+      setSystemStats({
+        cpu: Math.floor(Math.random() * 30) + 40,
+        ram: Math.floor(Math.random() * 40) + 50,
+        gpu: Math.floor(Math.random() * 20) + 75,
+        temp: Math.floor(Math.random() * 10) + 38,
+        network: Math.floor(Math.random() * 200) + 100,
       })
     }
+
     window.addEventListener("scroll", handleScroll)
+    const timeInterval = setInterval(updateTime, 1000)
+    const statsInterval = setInterval(updateStats, 3000)
+
     return () => {
       window.removeEventListener("scroll", handleScroll)
+      clearInterval(timeInterval)
+      clearInterval(statsInterval)
     }
   }, [])
 
   const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId)
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: "smooth",
-      })
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
@@ -1494,6 +494,7 @@ export default function FuturisticPortfolio() {
                 { id: "projects", label: "المشاريع", icon: <Briefcase size={14} className="sm:w-4 sm:h-4" /> },
                 { id: "experience", label: "الخبرات", icon: <Trophy size={14} className="sm:w-4 sm:h-4" /> },
                 { id: "contributions", label: "المساهمات", icon: <GitFork size={14} className="sm:w-4 sm:h-4" /> },
+                { id: "testimonials", label: "التوصيات", icon: <MessageSquare size={14} className="sm:w-4 sm:h-4" /> },
                 { id: "certifications", label: "الشهادات", icon: <FileCheck size={14} className="sm:w-4 sm:h-4" /> },
                 { id: "achievements", label: "الجوائز", icon: <Award size={14} className="sm:w-4 sm:h-4" /> },
               ].map((item, index) => (
@@ -1886,6 +887,70 @@ export default function FuturisticPortfolio() {
           </div>
         </motion.div>
       </section>
+
+      <motion.section
+        id="testimonials"
+        className="py-20 px-4 relative"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
+        <div className="container mx-auto max-w-7xl">
+          <motion.div className="text-center mb-16" variants={fadeInUp}>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+                التوصيات
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              آراء وتقييمات من الزملاء والعملاء الذين تعاملوا معي في مشاريع مختلفة
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                className="relative group"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="h-full p-8 rounded-2xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
+                      <User className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-900">{testimonial.name}</h3>
+                      <p className="text-sm text-gray-600">{testimonial.role}</p>
+                      <p className="text-xs text-gray-500">{testimonial.company}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+
+                  <p className="text-gray-700 leading-relaxed text-right">{testimonial.content}</p>
+
+                  <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-30 transition-opacity">
+                    <Quote className="w-8 h-8 text-cyan-600" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
       <section id="certifications" className="py-12 sm:py-20 px-4 relative">
         <motion.div
