@@ -1089,9 +1089,9 @@
 //   )
 // }
 
-
 "use client"
-import { useState, useEffect, useRef } from "react"
+
+import { useState, useEffect } from "react"
 import {
   Github,
   Linkedin,
@@ -1114,28 +1114,23 @@ import {
   BarChart3,
   Brain,
   Star,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize,
-  Minimize,
 } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+
+// import { motion, AnimatePresence } from "framer-motion"
 
 export default function FuturisticPortfolio() {
   const [activeSection, setActiveSection] = useState("hero")
-  const [isScrolling, setIsScrolling] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [volume, setVolume] = useState(50)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [activeProject, setActiveProject] = useState(null)
-  const [glitchEffect, setGlitchEffect] = useState(false)
-  const canvasRef = useRef(null)
+
+  const [systemStats, setSystemStats] = useState({
+    cpu: 45,
+    ram: 67,
+    gpu: 82,
+    temp: 42,
+    network: 156,
+  })
 
   const personalInfo = {
     name: "فهد",
@@ -1357,14 +1352,19 @@ export default function FuturisticPortfolio() {
     const updateTime = () => setCurrentTime(new Date())
     const timeInterval = setInterval(updateTime, 1000)
 
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    const updateStats = () => {
+      setSystemStats({
+        cpu: Math.floor(Math.random() * 40) + 30,
+        ram: Math.floor(Math.random() * 30) + 50,
+        gpu: Math.floor(Math.random() * 20) + 70,
+        temp: Math.floor(Math.random() * 15) + 35,
+        network: Math.floor(Math.random() * 200) + 100,
+      })
     }
+    const statsInterval = setInterval(updateStats, 2000)
 
     const handleScroll = () => {
       setScrollY(window.scrollY)
-      setIsScrolling(true)
-
       const sections = document.querySelectorAll("section[id]")
       const scrollPosition = window.scrollY + 200
 
@@ -1377,66 +1377,15 @@ export default function FuturisticPortfolio() {
           setActiveSection(sectionId)
         }
       })
-
-      setTimeout(() => setIsScrolling(false), 100)
     }
 
-    const glitchInterval = setInterval(() => {
-      setGlitchEffect(true)
-      setTimeout(() => setGlitchEffect(false), 200)
-    }, 10000)
-
     window.addEventListener("scroll", handleScroll)
-    window.addEventListener("mousemove", handleMouseMove)
 
     return () => {
       clearInterval(timeInterval)
-      clearInterval(glitchInterval)
+      clearInterval(statsInterval)
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [])
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const particles = []
-    for (let i = 0; i < 100; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        size: Math.random() * 3 + 1,
-        color: `hsl(${Math.random() * 360}, 70%, 60%)`,
-      })
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach((particle) => {
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1
-
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
-        ctx.fill()
-      })
-
-      requestAnimationFrame(animate)
-    }
-
-    animate()
   }, [])
 
   const scrollToSection = (sectionId) => {
@@ -1447,64 +1396,59 @@ export default function FuturisticPortfolio() {
         behavior: "smooth",
       })
     }
-    setIsMenuOpen(false)
   }
 
   return (
     <div className="min-h-screen bg-black text-white font-mono relative overflow-hidden" dir="rtl">
-      <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.3 }} />
-
-      <motion.div
-        className="fixed w-8 h-8 border-2 border-cyan-400 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      />
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-blue-900/5 to-cyan-900/5 animate-pulse"></div>
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-bounce"
+          style={{ animationDuration: "6s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/10 to-blue-500/10 rounded-full blur-3xl animate-bounce"
+          style={{ animationDuration: "8s", animationDelay: "2s" }}
+        ></div>
+      </div>
 
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-black/20 border-b border-cyan-500/30">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-6 text-sm font-mono">
-              <div className="text-cyan-400">{currentTime.toLocaleTimeString("ar-SA")}</div>
-              <div className="text-green-400">SYSTEM: ONLINE</div>
-              <div className="text-yellow-400">CPU: 98%</div>
+            <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-mono">
+              <div className="text-cyan-400 hover:scale-110 transition-transform duration-300">
+                {currentTime.toLocaleTimeString("ar-SA")}
+              </div>
+              <div className="text-green-400 hover:scale-110 transition-transform duration-300">SYSTEM: ONLINE</div>
+              <div
+                className={`transition-all duration-300 hover:scale-110 ${systemStats.cpu > 70 ? "text-red-400" : systemStats.cpu > 50 ? "text-yellow-400" : "text-green-400"}`}
+              >
+                CPU: {systemStats.cpu}%
+              </div>
+              <div
+                className={`transition-all duration-300 hover:scale-110 ${systemStats.ram > 80 ? "text-red-400" : systemStats.ram > 60 ? "text-yellow-400" : "text-blue-400"}`}
+              >
+                RAM: {systemStats.ram}%
+              </div>
+              <div className="text-purple-400 hover:scale-110 transition-transform duration-300">
+                GPU: {systemStats.gpu}%
+              </div>
+              <div
+                className={`transition-all duration-300 hover:scale-110 ${systemStats.temp > 45 ? "text-red-400" : systemStats.temp > 40 ? "text-yellow-400" : "text-cyan-400"}`}
+              >
+                TEMP: {systemStats.temp}°C
+              </div>
+              <div className="text-pink-400 hover:scale-110 transition-transform duration-300">
+                NET: {systemStats.network}MB/s
+              </div>
             </div>
-
-            <motion.div
-              className={`text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent ${
-                glitchEffect ? "animate-pulse" : ""
-              }`}
-              animate={{ scale: glitchEffect ? [1, 1.1, 1] : 1 }}
-            >
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
               {personalInfo.name} v2.0
-            </motion.div>
-
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="p-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all"
-              >
-                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-              </button>
-              <button
-                onClick={() => setVolume(volume > 0 ? 0 : 50)}
-                className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition-all"
-              >
-                {volume > 0 ? <Volume2 size={16} /> : <VolumeX size={16} />}
-              </button>
-              <button
-                onClick={() => setIsFullscreen(!isFullscreen)}
-                className="p-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 transition-all"
-              >
-                {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
-              </button>
             </div>
           </div>
 
           <div className="flex justify-center mt-4">
-            <div className="flex gap-2 p-2 rounded-full bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-xl border border-cyan-500/30">
+            <div className="flex gap-1 sm:gap-2 p-2 rounded-full bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-xl border border-cyan-500/30">
               {[
                 { id: "hero", label: "البداية", icon: <Star size={16} /> },
                 { id: "skills", label: "المهارات", icon: <Code size={16} /> },
@@ -1514,20 +1458,18 @@ export default function FuturisticPortfolio() {
                 { id: "certifications", label: "الشهادات", icon: <FileCheck size={16} /> },
                 { id: "achievements", label: "الجوائز", icon: <Award size={16} /> },
               ].map((item) => (
-                <motion.button
+                <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm transition-all whitespace-nowrap hover:scale-105 transition-transform duration-300 ${
                     activeSection === item.id
                       ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/25"
                       : "hover:bg-white/10 text-gray-300"
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {item.icon}
                   <span className="hidden md:inline">{item.label}</span>
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>
@@ -1536,304 +1478,168 @@ export default function FuturisticPortfolio() {
 
       <section id="hero" className="min-h-screen flex items-center justify-center relative pt-32">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-cyan-900/20" />
-
-        <motion.div
-          className="text-center z-10 max-w-4xl mx-auto px-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-            style={{
-              backgroundSize: "200% 200%",
-            }}
-          >
+        <div className="text-center z-10 max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse hover:scale-105 transition-transform duration-500">
             {personalInfo.name}
-          </motion.h1>
-
-          <motion.h2
-            className="text-2xl md:text-4xl mb-8 text-cyan-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
+          </h1>
+          <h2 className="text-xl sm:text-2xl md:text-4xl mb-8 text-cyan-300 hover:text-cyan-200 transition-colors duration-300">
             {personalInfo.title}
-          </motion.h2>
-
-          <motion.div
-            className="relative p-6 rounded-2xl bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-xl border border-cyan-500/30 mb-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl animate-pulse" />
-            <p className="text-lg md:text-xl leading-relaxed relative z-10">{personalInfo.bio}</p>
-          </motion.div>
-
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-          >
-            <motion.a
+          </h2>
+          <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-xl border border-cyan-500/30 mb-8 hover:border-purple-500/50 transition-all duration-300">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed">{personalInfo.bio}</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all shadow-lg shadow-cyan-500/25"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6, 182, 212, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all shadow-lg shadow-cyan-500/25 hover:scale-105 hover:shadow-cyan-500/40"
             >
               <Mail size={20} />
               <span>تواصل معي</span>
-            </motion.a>
-
-            <motion.a
+            </a>
+            <a
               href={personalInfo.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 transition-all shadow-lg shadow-purple-500/25"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 transition-all shadow-lg shadow-purple-500/25 hover:scale-105 hover:shadow-purple-500/40"
             >
               <Github size={20} />
               <span>GitHub</span>
-            </motion.a>
-
-            <motion.a
+            </a>
+            <a
               href={personalInfo.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25 hover:scale-105 hover:shadow-blue-500/40"
             >
               <Linkedin size={20} />
               <span>LinkedIn</span>
-            </motion.a>
-          </motion.div>
-
-          <motion.div
-            className="flex flex-col items-center"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
-          >
+            </a>
+          </div>
+          <div className="flex flex-col items-center">
             <span className="text-sm text-gray-400 mb-2">اكتشف المزيد</span>
-            <ChevronDown className="w-6 h-6 text-cyan-400" />
-          </motion.div>
-        </motion.div>
-
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-4 h-4 border border-cyan-500/30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+            <ChevronDown className="w-6 h-6 text-cyan-400 animate-bounce" />
+          </div>
         </div>
       </section>
 
       <section id="skills" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-purple-900/10" />
-
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-8 sm:mb-16 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             المهارات التقنية
-          </motion.h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {skills.map((skillGroup, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-              >
+              <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-cyan-500/30 group-hover:border-purple-500/50 transition-all">
+                <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-cyan-500/30 group-hover:border-purple-500/50 transition-all hover:scale-105 hover:-translate-y-2 duration-300">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600">
+                    <div className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 group-hover:rotate-12 transition-transform duration-300">
                       {skillGroup.icon}
                     </div>
-                    <h4 className="text-xl font-bold text-cyan-300">{skillGroup.category}</h4>
+                    <h4 className="text-lg sm:text-xl font-bold text-cyan-300">{skillGroup.category}</h4>
                   </div>
-
                   <div className="flex flex-wrap gap-2">
                     {skillGroup.items.map((skill, skillIndex) => (
-                      <motion.span
+                      <span
                         key={skillIndex}
-                        className="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/30 to-blue-600/30 border border-cyan-500/30 text-sm hover:border-purple-500/50 transition-all cursor-default"
-                        whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)" }}
+                        className="px-2 sm:px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/30 to-blue-600/30 border border-cyan-500/30 text-xs sm:text-sm hover:border-purple-500/50 transition-all cursor-default hover:scale-110"
                       >
                         {skill}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      <section id="projects" className="py-20 px-4 relative">
+      <section id="projects" className="py-12 sm:py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-l from-purple-900/10 to-cyan-900/10" />
-
-        <motion.div
-          className="max-w-7xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-cyan-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-8 sm:mb-16 bg-gradient-to-r from-purple-400 to-cyan-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             المشاريع التقنية
-          </motion.h3>
+          </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {projectCategories.map((category, index) => (
-              <motion.div
+              <div
                 key={category.id}
                 className="relative group cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
-                whileHover={{ scale: 1.05 }}
                 onClick={() => setActiveProject(activeProject === category.id ? null : category.id)}
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-20 rounded-2xl blur-xl group-hover:blur-2xl transition-all`}
                 />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-cyan-500/30 group-hover:border-purple-500/50 transition-all">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`p-4 rounded-full bg-gradient-to-r ${category.color}`}>{category.icon}</div>
-                    <h4 className="text-2xl font-bold text-white">{category.title}</h4>
+                <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl border border-cyan-500/30 group-hover:border-purple-500/50 transition-all hover:scale-105 hover:-translate-y-2 duration-300">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                    <div
+                      className={`p-3 sm:p-4 rounded-full bg-gradient-to-r ${category.color} group-hover:rotate-12 transition-transform duration-300`}
+                    >
+                      {category.icon}
+                    </div>
+                    <h4 className="text-lg sm:text-2xl font-bold text-white">{category.title}</h4>
                   </div>
-
-                  <div className="text-gray-300 mb-4">
+                  <div className="text-sm sm:text-base text-gray-300 mb-4">
                     {category.projects.length > 0 ? `${category.projects.length} مشروع متاح` : "قريباً..."}
                   </div>
-
-                  <AnimatePresence>
-                    {activeProject === category.id && category.projects.length > 0 && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-4 mt-6"
-                      >
-                        {category.projects.map((project, projectIndex) => (
-                          <motion.div
-                            key={projectIndex}
-                            className="p-4 rounded-xl bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700/50"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: projectIndex * 0.1 }}
-                          >
-                            <h5 className="font-bold text-cyan-300 mb-2">{project.title}</h5>
-                            <p className="text-sm text-gray-400 mb-3">{project.description}</p>
-
-                            <div className="flex flex-wrap gap-2 mb-3">
-                              {project.technologies.map((tech, techIndex) => (
-                                <span
-                                  key={techIndex}
-                                  className="px-2 py-1 rounded-full bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-cyan-500/20 text-xs"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-
-                            {project.demo && (
-                              <motion.a
-                                href={project.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                                whileHover={{ scale: 1.05 }}
+                  {activeProject === category.id && category.projects.length > 0 && (
+                    <div className="space-y-4 mt-6">
+                      {category.projects.map((project, projectIndex) => (
+                        <div
+                          key={projectIndex}
+                          className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700/50 hover:border-gray-600/50 transition-all"
+                        >
+                          <h5 className="font-bold text-cyan-300 mb-2 text-sm sm:text-base">{project.title}</h5>
+                          <p className="text-xs sm:text-sm text-gray-400 mb-3">{project.description}</p>
+                          <div className="flex flex-wrap gap-1 sm:gap-2 mb-3">
+                            {project.technologies.map((tech, techIndex) => (
+                              <span
+                                key={techIndex}
+                                className="px-2 py-1 rounded-full bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-cyan-500/20 text-xs hover:scale-110 transition-transform duration-200"
                               >
-                                <ExternalLink size={14} />
-                                <span>عرض المشروع</span>
-                              </motion.a>
-                            )}
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          {project.demo && (
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-xs sm:text-sm text-cyan-400 hover:text-cyan-300 transition-colors hover:scale-105"
+                            >
+                              <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" />
+                              <span>عرض المشروع</span>
+                            </a>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 relative">
+      <section id="experience" className="py-12 sm:py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/10 to-blue-900/10" />
-
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-green-400 to-blue-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-8 sm:mb-16 bg-gradient-to-r from-green-400 to-blue-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             الخبرات المهنية
-          </motion.h3>
-
-          <div className="space-y-8">
+          </h3>
+          <div className="space-y-6 sm:space-y-8">
             {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-              >
+              <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-green-500/30 group-hover:border-blue-500/50 transition-all">
-                  <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-green-500/30 group-hover:border-blue-500/50 transition-all hover:scale-105 hover:-translate-y-1 duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
                     <div
-                      className={`px-3 py-1 rounded-full text-sm font-bold ${
+                      className={`px-3 py-1 rounded-full text-xs sm:text-sm font-bold w-fit hover:scale-110 transition-transform duration-200 ${
                         exp.type === "training"
                           ? "bg-gradient-to-r from-orange-500 to-red-600"
                           : exp.type === "volunteer"
@@ -1843,136 +1649,89 @@ export default function FuturisticPortfolio() {
                     >
                       {exp.type === "training" ? "تدريب" : exp.type === "volunteer" ? "تطوع" : "عمل"}
                     </div>
-                    <h4 className="text-2xl font-bold text-cyan-300">{exp.title}</h4>
+                    <h4 className="text-lg sm:text-2xl font-bold text-cyan-300">{exp.title}</h4>
                   </div>
-
                   <div className="mb-4">
-                    <p className="text-lg text-white mb-2">{exp.position}</p>
+                    <p className="text-base sm:text-lg text-white mb-2">{exp.position}</p>
                     <p className="text-gray-400 mb-2">{exp.organization}</p>
                     <p className="text-sm text-gray-500">{exp.duration}</p>
                   </div>
-
                   <p className="text-gray-300 mb-4">{exp.description}</p>
-
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 rounded-full bg-gradient-to-r from-green-600/30 to-blue-600/30 border border-green-500/30 text-sm"
+                        className="px-3 py-1 rounded-full bg-gradient-to-r from-green-600/30 to-blue-600/30 border border-green-500/30 text-sm hover:scale-110 transition-transform duration-200"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Contributions Section */}
       <section id="contributions" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-l from-pink-900/10 to-purple-900/10" />
-
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             المساهمات والمشاريع
-          </motion.h3>
-
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {contributions.map((contribution, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.3, duration: 0.8 }}
-                whileHover={{ scale: 1.02 }}
-              >
+              <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-pink-500/30 group-hover:border-purple-500/50 transition-all h-full">
+                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-pink-500/30 group-hover:border-purple-500/50 transition-all h-full hover:scale-105 hover:-translate-y-2 duration-300">
                   <h4 className="text-2xl font-bold text-pink-300 mb-3">{contribution.title}</h4>
                   <p className="text-gray-300 mb-4">{contribution.description}</p>
-
                   <div className="mb-4">
                     <p className="text-sm text-purple-400 mb-1">{contribution.role}</p>
                     <p className="text-sm text-gray-500">{contribution.company}</p>
                   </div>
-
                   <div className="flex flex-wrap gap-2 mb-4">
                     {contribution.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 rounded-full bg-gradient-to-r from-pink-600/30 to-purple-600/30 border border-pink-500/30 text-sm"
+                        className="px-3 py-1 rounded-full bg-gradient-to-r from-pink-600/30 to-purple-600/30 border border-pink-500/30 text-sm hover:scale-110 transition-transform duration-200"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-
                   {contribution.link !== "قريباً إن شاء الله" ? (
-                    <motion.a
+                    <a
                       href={contribution.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
-                      whileHover={{ scale: 1.05 }}
+                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors hover:scale-105"
                     >
                       <ExternalLink size={16} />
                       <span>عرض المشروع</span>
-                    </motion.a>
+                    </a>
                   ) : (
                     <span className="text-gray-500 italic">{contribution.link}</span>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Certifications Section */}
       <section id="certifications" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/10 to-orange-900/10" />
-
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-yellow-400 to-orange-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-yellow-400 to-orange-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             الشهادات المهنية
-          </motion.h3>
-
+          </h3>
           <div className="space-y-8">
             {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                whileHover={{ scale: 1.02 }}
-              >
+              <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-yellow-500/30 group-hover:border-orange-500/50 transition-all">
+                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-yellow-500/30 group-hover:border-orange-500/50 transition-all hover:scale-105 hover:-translate-y-1 duration-300">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="text-2xl font-bold text-yellow-300 mb-2">{cert.title}</h4>
@@ -1980,67 +1739,40 @@ export default function FuturisticPortfolio() {
                         {cert.issuer} • {cert.date}
                       </p>
                       <p className="text-gray-300 mb-4">{cert.description}</p>
-
                       {cert.link && (
-                        <motion.a
+                        <a
                           href={cert.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors"
-                          whileHover={{ scale: 1.05 }}
+                          className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors hover:scale-105"
                         >
                           <ExternalLink size={16} />
                           <span>عرض الشهادة</span>
-                        </motion.a>
+                        </a>
                       )}
                     </div>
-
-                    <motion.div
-                      className="p-4 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600"
-                      animate={{ rotate: [0, 10, 0] }}
-                      transition={{ repeat: Number.POSITIVE_INFINITY, duration: 3 }}
-                    >
+                    <div className="p-4 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 hover:rotate-12 transition-transform duration-300">
                       <FileCheck className="w-8 h-8" />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Achievements Section */}
       <section id="achievements" className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-l from-amber-900/10 to-yellow-900/10" />
-
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
             الجوائز والإنجازات
-          </motion.h3>
-
+          </h3>
           <div className="space-y-8">
             {achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                whileHover={{ scale: 1.02 }}
-              >
+              <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-amber-500/30 group-hover:border-yellow-500/50 transition-all">
+                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl border border-amber-500/30 group-hover:border-yellow-500/50 transition-all hover:scale-105 hover:-translate-y-1 duration-300">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="text-2xl font-bold text-amber-300 mb-2">{achievement.title}</h4>
@@ -2051,86 +1783,63 @@ export default function FuturisticPortfolio() {
                       )}
                       {achievement.description && <p className="text-gray-300">{achievement.description}</p>}
                     </div>
-
-                    <motion.div
-                      className="p-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600"
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
-                    >
+                    <div className="p-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:rotate-12 transition-transform duration-300">
                       <Trophy className="w-8 h-8" />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       <footer className="py-12 px-4 relative border-t border-cyan-500/30">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-blue-900/20" />
-
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="mb-8">
             <h4 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent mb-4">
               © {new Date().getFullYear()} {personalInfo.name} - جميع الحقوق محفوظة
             </h4>
             <p className="text-gray-400">تم تطويره بتقنيات مستقبلية</p>
-          </motion.div>
-
-          <div className="flex justify-center gap-6">
-            <motion.a
+          </div>
+          <div className="flex justify-center gap-4 sm:gap-6">
+            <a
               href={`mailto:${personalInfo.email}`}
-              className="p-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all"
-              whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(6, 182, 212, 0.5)" }}
-              whileTap={{ scale: 0.9 }}
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all hover:scale-110 hover:rotate-12"
             >
-              <Mail size={20} />
-            </motion.a>
-
-            <motion.a
+              <Mail size={16} className="sm:w-5 sm:h-5" />
+            </a>
+            <a
               href={personalInfo.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 transition-all"
-              whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(168, 85, 247, 0.5)" }}
-              whileTap={{ scale: 0.9 }}
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 transition-all hover:scale-110 hover:rotate-12"
             >
-              <Github size={20} />
-            </motion.a>
-
-            <motion.a
+              <Github size={16} className="sm:w-5 sm:h-5" />
+            </a>
+            <a
               href={personalInfo.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all"
-              whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)" }}
-              whileTap={{ scale: 0.9 }}
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all hover:scale-110 hover:rotate-12"
             >
-              <Linkedin size={20} />
-            </motion.a>
+              <Linkedin size={16} className="sm:w-5 sm:h-5" />
+            </a>
           </div>
         </div>
       </footer>
 
-      <motion.button
-        className="fixed bottom-8 left-8 p-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 shadow-lg z-50"
+      <button
+        className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 p-3 sm:p-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 shadow-lg z-50 transition-all hover:scale-110 hover:rotate-12"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(6, 182, 212, 0.5)" }}
-        whileTap={{ scale: 0.9 }}
-        animate={{
+        style={{
           opacity: scrollY > 300 ? 1 : 0,
-          y: scrollY > 300 ? 0 : 100,
+          transform: scrollY > 300 ? "translateY(0)" : "translateY(100px)",
         }}
-        transition={{ duration: 0.3 }}
       >
-        <ChevronDown className="w-6 h-6 transform rotate-180" />
-      </motion.button>
+        <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 transform rotate-180" />
+      </button>
     </div>
   )
 }
