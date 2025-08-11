@@ -1356,7 +1356,7 @@ export default function FuturisticPortfolio() {
       title: "أقيام - نتائج الرياضات الإلكترونية",
       description:
         "منصة متخصصة في عرض وتتبع نتائج الرياضات الإلكترونية والبطولات المختلفة. توفر إحصائيات مفصلة ومتابعة حية للمباريات والفرق.",
-      link: "https://apps.apple.com/app/agyam/id6670207726",
+      link: "https://apps.apple.com/sa/app/agyam/id6746292350",
       technologies: ["React Native", "Express.js", "PostgreSQL", "Socket.io"],
       role: "Team Leader & Project Owner",
       company: "شركة هيبرا",
