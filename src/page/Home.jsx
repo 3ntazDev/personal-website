@@ -310,7 +310,7 @@ export default function FuturisticPortfolio() {
       role: "Co-Founder & Lead Software Developer",
       company: "Tech Company",
       content:
-        "فهد مطور برمجيات متميز يتمتع بمهارات تقنية عالية وقدرة على حل المشاكل المعقدة. عمل معي في عدة مشاريع وأظهر احترافية عالية في التعامل مع التقنيات الحديثة. أنصح بالتعامل معه بشدة.",
+        "فI've worked with Fahad on multiple projects... sharp, reliable, and technically solid. A great engineer to have on any team . ",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
@@ -320,7 +320,7 @@ export default function FuturisticPortfolio() {
       role: "Engineering Innovation & Building Ventures",
       company: "جامعة الامير سطام ",
       content:
-        "فهد طالب متميز ومبدع في مجال هندسة البرمجيات. يتمتع بقدرة على التفكير النقدي وحل المشاكل بطرق إبداعية. مشاركته في المشاريع الأكاديمية كانت مثمرة جداً.",
+        "I had the pleasure of teaching Fahad Alghamdi in the Foundations of Software Engineering course, where he consistently ranked among the top-performing students. Fahad demonstrated a strong grasp of technical concepts, analytical thinking, and the ability to engage meaningfully in discussions. His work was always thorough, timely, and reflective of a high level of academic commitment.In addition to his academic performance, I worked with Fahad through his role in the student council. During our collaboration, I observed several standout qualities in him—most notably his leadership, reliability, and strong sense of initiative. He showed genuine dedication to serving his peers and contributing positively to student life, always acting with professionalism and a collaborative spirit.Fahad combines academic excellence with interpersonal strength and a proactive mindset. I am confident he will be an asset in any professional or academic setting.I highly recommend Fahad without reservation",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
@@ -330,7 +330,7 @@ export default function FuturisticPortfolio() {
       role: "Software Engineer & Project Manager",
       company: "شركة تقنية",
       content:
-        "فهد مطور موهوب وملتزم. عمل تحت إشرافي في عدة مشاريع وأظهر قدرة ممتازة على العمل ضمن الفريق وإنجاز المهام في الوقت المحدد. مهاراته التقنية والقيادية مميزة.",
+        "It was a pleasure working with Fahad during his time with us in the Software Engineering Club. Fahad was part of the Media team, and he consistently demonstrated exceptional creativity and dedication. He was always proactive, often offering his ideas and support.I highly recommend Fahad for any future opportunities, as I am confident he will bring great value to any team he joins.",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
@@ -340,7 +340,7 @@ export default function FuturisticPortfolio() {
       role: "Software Engineering Student",
       company: "جامعة الأمير سطام",
       content:
-        "فهد زميل فريق رائع. عملنا معاً في مشاريع جامعية متعددة وكان دائماً الشخص الذي يمكن الاعتماد عليه. مهاراته في البرمجة والتصميم متقدمة جداً.",
+        "I truly enjoyed working with Fahad Alghamdi on the Software Engineering Club’s website project. Throughout our collaboration, Fahad demonstrated deep knowledge in web design, strong technical skills, and a great eye for aesthetics.I personally gained a lot from the experience — both in terms of expanding my knowledge and learning new skills in web development and design. Working with him was an excellent experience, and I deeply appreciated his professionalism and collaborative spirit.I would gladly work with him again in the future and highly recommend him for any technical or design-related project.",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
@@ -350,7 +350,7 @@ export default function FuturisticPortfolio() {
       role: "Data Analyst",
       company: "شركة تحليل البيانات",
       content:
-        "تعاملت مع فهد في عدة مشاريع وكان دائماً محترف في عمله. قدرته على فهم متطلبات المشروع وتنفيذها بدقة مذهلة. أنصح بالتعامل معه.",
+        "مهندس فهد من الناس اللي زاملتهم في عديد انشطة وفعاليات وخضنا تجارب جميلة وتعلمنا الكثير وهو شخص طموح ويسعى لتجاوز حدود مهاراته ولا سقف له في مجاله، اعانك ربي ووفقك مهندسنا فهد. ",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
@@ -360,7 +360,7 @@ export default function FuturisticPortfolio() {
       role: "Aspiring Product Manager",
       company: "المجلس الطلابي",
       content:
-        "فهد زميل مميز في المجلس الطلابي. مهاراته القيادية والتنظيمية ساعد كثيراً في إنجاح الفعاليات والمشاريع. شخص يمكن الاعتماد عليه.",
+        "I had the pleasure of working with Fahad during our time on the student council. Fahad consistently demonstrated the qualities of a natural leader, action-oriented, and deeply collaborative. He brought forward innovative ideas, mobilized the team with clarity and energy, and always delivered impact beyond expectations. His ability to navigate challenges with composure and lead initiatives with ownership made him a key driver of our success. I would gladly work with him again in any high-performance environment.",
       rating: 5,
       avatar: null, // Removed image path to use default icon
     },
