@@ -429,79 +429,83 @@ export default function FuturisticPortfolio() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-4">
+        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
           <div className="flex justify-between items-center">
             <motion.div
-              className="flex items-center gap-1 sm:gap-3 lg:gap-6 text-xs sm:text-sm font-mono overflow-x-auto"
+              className="flex items-center gap-1 sm:gap-2 lg:gap-4 text-xs sm:text-sm font-mono overflow-x-auto scrollbar-hide"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <div className="text-cyan-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap">
+              <div className="text-cyan-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap min-w-fit">
                 {currentTime.toLocaleTimeString("ar-SA")}
               </div>
-              <div className="text-green-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap">
+              <div className="text-green-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap min-w-fit">
                 ONLINE
               </div>
               <div
-                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap ${
+                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap min-w-fit ${
                   systemStats.cpu > 70 ? "text-red-600" : systemStats.cpu > 50 ? "text-yellow-600" : "text-green-600"
                 }`}
               >
                 CPU: {systemStats.cpu}%
               </div>
               <div
-                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap ${
+                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap min-w-fit hidden sm:block ${
                   systemStats.ram > 80 ? "text-red-600" : systemStats.ram > 60 ? "text-yellow-600" : "text-blue-600"
                 }`}
               >
                 RAM: {systemStats.ram}%
               </div>
-              <div className="text-purple-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap">
+              <div className="text-purple-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap min-w-fit hidden md:block">
                 GPU: {systemStats.gpu}%
               </div>
               <div
-                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap ${
+                className={`transition-all duration-300 hover:scale-110 whitespace-nowrap min-w-fit hidden lg:block ${
                   systemStats.temp > 45 ? "text-red-600" : systemStats.temp > 40 ? "text-yellow-600" : "text-cyan-600"
                 }`}
               >
                 TEMP: {systemStats.temp}°C
               </div>
-              <div className="text-pink-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap">
+              <div className="text-pink-600 hover:scale-110 transition-transform duration-300 whitespace-nowrap min-w-fit hidden xl:block">
                 NET: {systemStats.network}MB/s
               </div>
             </motion.div>
             <motion.div
-              className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent"
+              className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               {personalInfo.name} v2.0
             </motion.div>
-            <div className="w-4 sm:w-16"></div>
+            <div className="w-2 sm:w-8 lg:w-16"></div>
           </div>
           <motion.div
-            className="flex justify-center mt-2 sm:mt-4"
+            className="flex justify-center mt-2 sm:mt-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <div className="flex gap-1 sm:gap-2 p-1 sm:p-2 rounded-full bg-gray-100 border border-gray-300 overflow-x-auto max-w-full">
+            <div className="flex gap-1 sm:gap-2 p-1 sm:p-2 rounded-full bg-gray-100 border border-gray-300 overflow-x-auto scrollbar-hide max-w-full">
               {[
-                { id: "hero", label: "البداية", icon: <Star size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "skills", label: "المهارات", icon: <Code size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "projects", label: "المشاريع", icon: <Briefcase size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "experience", label: "الخبرات", icon: <Trophy size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "contributions", label: "المساهمات", icon: <GitFork size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "testimonials", label: "التوصيات", icon: <MessageSquare size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "certifications", label: "الشهادات", icon: <FileCheck size={14} className="sm:w-4 sm:h-4" /> },
-                { id: "achievements", label: "الجوائز", icon: <Award size={14} className="sm:w-4 sm:h-4" /> },
+                { id: "hero", label: "البداية", icon: <Star size={12} className="sm:w-4 sm:h-4" /> },
+                { id: "skills", label: "المهارات", icon: <Code size={12} className="sm:w-4 sm:h-4" /> },
+                { id: "projects", label: "المشاريع", icon: <Briefcase size={12} className="sm:w-4 sm:h-4" /> },
+                { id: "experience", label: "الخبرات", icon: <Trophy size={12} className="sm:w-4 sm:h-4" /> },
+                { id: "contributions", label: "المساهمات", icon: <GitFork size={12} className="sm:w-4 sm:h-4" /> },
+                {
+                  id: "testimonials",
+                  label: "التوصيات",
+                  icon: <MessageSquare size={12} className="sm:w-4 sm:h-4" />,
+                },
+                { id: "certifications", label: "الشهادات", icon: <FileCheck size={12} className="sm:w-4 sm:h-4" /> },
+                { id: "achievements", label: "الجوائز", icon: <Award size={12} className="sm:w-4 sm:h-4" /> },
               ].map((item, index) => (
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 lg:px-4 py-1 sm:py-1.5 lg:py-2 rounded-full text-xs sm:text-sm transition-all whitespace-nowrap min-w-fit ${
                     activeSection === item.id
                       ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/25"
                       : "hover:bg-gray-200 text-gray-700"
@@ -513,7 +517,7 @@ export default function FuturisticPortfolio() {
                   whileTap={{ scale: 0.95 }}
                 >
                   {item.icon}
-                  <span className="hidden sm:inline lg:inline">{item.label}</span>
+                  <span className="hidden sm:inline">{item.label}</span>
                 </motion.button>
               ))}
             </div>
@@ -523,31 +527,36 @@ export default function FuturisticPortfolio() {
 
       <motion.section
         id="hero"
-        className="min-h-screen flex items-center justify-center relative pt-32"
+        className="min-h-screen flex items-center justify-center relative pt-24 sm:pt-32"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <div className="text-center z-10 max-w-4xl mx-auto px-4">
+        <div className="text-center z-10 max-w-4xl mx-auto px-4 sm:px-6">
           <motion.h1
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight"
             variants={fadeInUp}
           >
             {personalInfo.name}
           </motion.h1>
           <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-6 sm:mb-8 text-gray-700"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-4 sm:mb-6 lg:mb-8 text-gray-700"
             variants={fadeInUp}
           >
             {personalInfo.title}
           </motion.h2>
           <motion.div
-            className="relative p-4 sm:p-6 lg:p-8 rounded-2xl bg-gray-50 border border-gray-200 mb-8 sm:mb-12 shadow-lg"
+            className="relative p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl bg-gray-50 border border-gray-200 mb-6 sm:mb-8 lg:mb-12 shadow-lg"
             variants={scaleIn}
           >
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800">{personalInfo.bio}</p>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-800">
+              {personalInfo.bio}
+            </p>
           </motion.div>
-          <motion.div className="flex flex-wrap justify-center gap-4 mb-12" variants={staggerContainer}>
+          <motion.div
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+            variants={staggerContainer}
+          >
             {[
               {
                 href: `mailto:${personalInfo.email}`,
@@ -573,20 +582,20 @@ export default function FuturisticPortfolio() {
                 href={link.href}
                 target={index > 0 ? "_blank" : undefined}
                 rel={index > 0 ? "noopener noreferrer" : undefined}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r ${link.gradient} hover:shadow-lg transition-all text-white`}
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r ${link.gradient} hover:shadow-lg transition-all text-white text-sm sm:text-base w-full sm:w-auto justify-center`}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <link.icon size={20} />
+                <link.icon size={18} className="sm:w-5 sm:h-5" />
                 <span>{link.text}</span>
               </motion.a>
             ))}
           </motion.div>
           <motion.div className="flex flex-col items-center" variants={fadeInUp}>
-            <span className="text-sm text-gray-600 mb-2">اكتشف المزيد</span>
+            <span className="text-xs sm:text-sm text-gray-600 mb-2">اكتشف المزيد</span>
             <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}>
-              <ChevronDown className="w-6 h-6 text-cyan-600" />
+              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600" />
             </motion.div>
           </motion.div>
         </div>
@@ -594,7 +603,7 @@ export default function FuturisticPortfolio() {
 
       <motion.section
         id="skills"
-        className="py-12 sm:py-20 px-4 relative"
+        className="py-8 sm:py-12 lg:py-20 px-4 relative"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -602,13 +611,13 @@ export default function FuturisticPortfolio() {
       >
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.h3
-            className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-12 sm:mb-16 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent leading-tight pb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent leading-tight pb-2 sm:pb-4"
             variants={fadeInUp}
           >
             المهارات التقنية
           </motion.h3>
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             variants={staggerContainer}
           >
             {skills.map((skillGroup, index) => (
@@ -623,31 +632,27 @@ export default function FuturisticPortfolio() {
                 }}
               >
                 <motion.div
-                  className="relative p-4 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-lg group-hover:shadow-xl transition-all"
+                  className="relative p-4 sm:p-5 lg:p-6 rounded-2xl bg-white border border-gray-200 shadow-lg group-hover:shadow-xl transition-all"
                   whileHover={{ boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <motion.div
-                      className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600"
+                      className="p-2 sm:p-2.5 lg:p-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600"
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
                     >
                       {skillGroup.icon}
                     </motion.div>
-                    <h4 className="text-lg sm:text-xl font-bold text-gray-800">{skillGroup.category}</h4>
+                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800">{skillGroup.category}</h4>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {skillGroup.items.map((skill, skillIndex) => (
                       <motion.span
                         key={skillIndex}
                         className="px-2 sm:px-3 py-1 rounded-full bg-gray-100 border border-gray-300 text-xs sm:text-sm hover:bg-gray-200 transition-all cursor-default text-gray-700"
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: "#e5e7eb",
-                          transition: { duration: 0.2 },
-                        }}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileHover={{ scale: 1.05 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: skillIndex * 0.1 }}
                       >
                         {skill}
@@ -890,28 +895,75 @@ export default function FuturisticPortfolio() {
 
       <motion.section
         id="testimonials"
-        className="py-20 px-4 relative"
+        className="py-8 sm:py-12 lg:py-20 px-4 relative"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerContainer}
       >
         <div className="container mx-auto max-w-7xl">
-          <motion.div className="text-center mb-16" variants={fadeInUp}>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                <MessageSquare className="w-6 h-6 text-white" />
+          <motion.div className="text-center mb-6 sm:mb-8 lg:mb-16" variants={fadeInUp}>
+            <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 mb-3 sm:mb-4 lg:mb-6">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
-              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
                 التوصيات
               </h2>
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-4">
               آراء وتقييمات من الزملاء والعملاء الذين تعاملوا معي في مشاريع مختلفة
             </p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2 md:hidden">اسحب يميناً ويساراً لرؤية المزيد</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="md:hidden">
+            <div className="overflow-x-auto pb-4 scrollbar-hide">
+              <div className="flex gap-3 sm:gap-4 w-max px-2">
+                {testimonials.map((testimonial, index) => (
+                  <motion.div
+                    key={testimonial.id}
+                    className="relative group w-72 sm:w-80 flex-shrink-0"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    <div className="h-full p-4 sm:p-5 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                          <User className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-bold text-sm sm:text-base text-gray-900 truncate">{testimonial.name}</h3>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate">{testimonial.role}</p>
+                          <p className="text-xs text-gray-500 truncate">{testimonial.company}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 mb-3">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+
+                      <p className="text-gray-700 leading-relaxed text-right text-sm sm:text-base line-clamp-4">
+                        {testimonial.content.length > 120
+                          ? `${testimonial.content.substring(0, 120)}...`
+                          : testimonial.content}
+                      </p>
+
+                      <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-30 transition-opacity">
+                        <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-600" />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
@@ -920,12 +972,12 @@ export default function FuturisticPortfolio() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="h-full p-8 rounded-2xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
-                      <User className="w-8 h-8 text-white" />
+                <div className="h-full p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-lg group-hover:shadow-xl transition-all">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
+                      <User className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-gray-900">{testimonial.name}</h3>
@@ -1066,46 +1118,42 @@ export default function FuturisticPortfolio() {
         </motion.div>
       </section>
 
-      <footer className="py-8 sm:py-12 px-4 relative border-t border-gray-300">
+      <footer className="py-6 sm:py-8 lg:py-12 px-4 relative border-t border-gray-300">
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div
-            className="mb-6 sm:mb-8"
+            className="mb-4 sm:mb-6 lg:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h4 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            <h4 className="text-base sm:text-lg lg:text-2xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-2 sm:mb-4">
               © {new Date().getFullYear()} {personalInfo.name} - جميع الحقوق محفوظة
             </h4>
-            <p className="text-sm sm:text-base text-gray-600">تم تطويره بتقنيات مستقبلية</p>
+            <p className="text-xs sm:text-sm lg:text-base text-gray-600">تم تطويره بتقنيات مستقبلية</p>
           </motion.div>
           <motion.div
-            className="flex justify-center gap-4 sm:gap-6"
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             {[
-              { href: `mailto:${personalInfo.email}`, icon: Mail, gradient: "from-cyan-500 to-blue-600" },
-              { href: personalInfo.social.github, icon: Github, gradient: "from-purple-500 to-pink-600" },
-              { href: personalInfo.social.linkedin, icon: Linkedin, gradient: "from-blue-500 to-indigo-600" },
-            ].map((link, index) => (
+              { href: personalInfo.social.github, icon: Github, label: "GitHub" },
+              { href: personalInfo.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+              { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email" },
+            ].map((social, index) => (
               <motion.a
                 key={index}
-                href={link.href}
-                target={index > 0 ? "_blank" : undefined}
-                rel={index > 0 ? "noopener noreferrer" : undefined}
-                className={`p-2 sm:p-3 rounded-full bg-gradient-to-r ${link.gradient} hover:shadow-lg transition-all text-white`}
-                variants={scaleIn}
-                whileHover={{
-                  scale: 1.2,
-                  rotate: 360,
-                  transition: { duration: 0.3 },
-                }}
-                whileTap={{ scale: 0.9 }}
+                href={social.href}
+                target={index < 2 ? "_blank" : undefined}
+                rel={index < 2 ? "noopener noreferrer" : undefined}
+                className="p-2 sm:p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-all group"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <link.icon size={16} className="sm:w-5 sm:h-5" />
+                <social.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600 group-hover:text-gray-800 transition-colors" />
               </motion.a>
             ))}
           </motion.div>
